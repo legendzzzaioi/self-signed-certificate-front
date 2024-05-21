@@ -13,7 +13,7 @@ Run Docker Container
 
 ```
 docker run --name self-signed-certificate-front \
-  --link self-signed-certificate-service:self-signed-certificate-service
+  --link self-signed-certificate-service:self-signed-certificate-service \
   --restart always \
   -p 80:80 \
   -d self-signed-certificate-front:v1
