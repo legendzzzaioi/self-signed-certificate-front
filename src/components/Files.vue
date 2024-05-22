@@ -87,6 +87,7 @@ function setupClipboard(): void {
 
 function closeModal(): void {
   showModal.value = false;
+  fileContent.value = '';
   resetCopyStatus();
 }
 
