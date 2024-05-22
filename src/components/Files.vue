@@ -68,7 +68,9 @@ async function viewFile(name: string, action: 'view' | 'download'): Promise<void
 function openModal(): void {
   showModal.value = true;
   resetCopyStatus();
-  nextTick(setupClipboard);
+  nextTick(() => {
+    setupClipboard();
+  });
 }
 
 function setupClipboard(): void {
@@ -132,10 +134,6 @@ function showModalMessage(message: string): void {
   showModal.value = true;
 }
 
-function toggleDateInfoVisibility(): void {
-  showDates.value = !showDates.value;
-}
-
 onMounted(fetchFileList);
 
 function updateCopyStatus(message: string): void {
@@ -157,7 +155,7 @@ function updateCopyStatus(message: string): void {
           <button class="delete-button" @click="deleteFile(file.name)">Delete</button>
         </div>
       </li>
-      <button @click="toggleDateInfoVisibility" class="toggle-date-button">
+      <button @click="showDates = !showDates" class="toggle-date-button">
         {{ showDates ? 'Hide Dates' : 'Show Dates' }}
       </button>
     </ul>
