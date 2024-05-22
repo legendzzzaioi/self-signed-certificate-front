@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
+import {ref, onMounted} from 'vue';
+import {useRouter} from 'vue-router';
 
 const router = useRouter();
 
@@ -38,7 +38,7 @@ const showError = ref(false);
 const errorMessage = ref('');
 
 const setInitialSelection = () => {
-  formData.value.selection = 'all'; 
+  formData.value.selection = 'all';
 };
 
 onMounted(setInitialSelection);
@@ -65,7 +65,7 @@ async function handleSubmit(): Promise<void> {
     if (response.ok) {
       const data = await response.json();
       if (data.message === 'success') {
-        router.push('/files');
+        await router.push('/files');
       } else {
         showModalMessage('Generation failed: ' + (data.error || 'Unknown error'));
       }
@@ -79,7 +79,7 @@ async function handleSubmit(): Promise<void> {
 }
 
 function validateFormData(): boolean {
-  const { selection, domain, ip } = formData.value;
+  const {selection, domain, ip} = formData.value;
   if (selection === 'all' && !domain && !ip) {
     errorMessage.value = 'Please fill in at least one of Domain(s) or IP(s).';
     return false;
@@ -109,33 +109,43 @@ function closeModal(): void {
 
       <div v-if="formData.selection === 'all'">
         <label for="domain">Domain(s):</label>
-        <input type="text" id="domain" name="domain" v-model="formData.domain" placeholder="Optional parameter, multiple parameters separated by commas, example: test.com,*.zzz.com"><br>
+        <input type="text" id="domain" name="domain" v-model="formData.domain"
+               placeholder="Optional parameter, multiple parameters separated by commas, example: test.com,*.zzz.com"><br>
 
         <label for="ip">IP(s):</label>
-        <input type="text" id="ip" name="ip" v-model="formData.ip" placeholder="Optional parameter, multiple parameters separated by commas"><br>
+        <input type="text" id="ip" name="ip" v-model="formData.ip"
+               placeholder="Optional parameter, multiple parameters separated by commas"><br>
 
         <label for="caSubject">CA Subject:</label>
-        <input type="text" id="caSubject" name="caSubject" v-model="formData.caSubject" placeholder="Default: /C=CN/ST=Jiangsu/L=Wuxi/O=zzz/OU=zzz/CN=zzz"><br>
+        <input type="text" id="caSubject" name="caSubject" v-model="formData.caSubject"
+               placeholder="Default: /C=CN/ST=Jiangsu/L=Wuxi/O=zzz/OU=zzz/CN=zzz"><br>
 
         <label for="caValidityDays">CA Validity Days:</label>
-        <input type="number" id="caValidityDays" name="caValidityDays" v-model="formData.caValidityDays" placeholder="Default: 73000"><br>
+        <input type="number" id="caValidityDays" name="caValidityDays" v-model="formData.caValidityDays"
+               placeholder="Default: 73000"><br>
 
         <label for="rootSubject">Root CA Subject:</label>
-        <input type="text" id="rootSubject" name="rootSubject" v-model="formData.rootSubject" placeholder="Default: /C=CN/ST=Jiangsu/L=Wuxi/O=zzz/OU=zzz/CN=zzz Root CA"><br>
+        <input type="text" id="rootSubject" name="rootSubject" v-model="formData.rootSubject"
+               placeholder="Default: /C=CN/ST=Jiangsu/L=Wuxi/O=zzz/OU=zzz/CN=zzz Root CA"><br>
 
         <label for="rootValidityDays">Root CA Validity Days:</label>
-        <input type="number" id="rootValidityDays" name="rootValidityDays" v-model="formData.rootValidityDays" placeholder="If not specified, same as CA Validity Days"><br>
+        <input type="number" id="rootValidityDays" name="rootValidityDays" v-model="formData.rootValidityDays"
+               placeholder="If not specified, same as CA Validity Days"><br>
 
         <label for="serialNumber">Serial Number:</label>
-        <input type="number" id="serialNumber" name="serialNumber" v-model="formData.serialNumber" placeholder="Default: 1000"><br>
+        <input type="number" id="serialNumber" name="serialNumber" v-model="formData.serialNumber"
+               placeholder="Default: 1000"><br>
       </div>
       <div v-if="formData.selection === 'rootOnly'">
         <label for="rootOnlySubject">Root CA Subject:</label>
-        <input type="text" id="rootOnlySubject" name="rootOnlySubject" v-model="formData.rootOnlySubject" placeholder="Default: /C=CN/ST=Jiangsu/L=Wuxi/O=zzz/OU=zzz/CN=zzz Root CA"><br>
+        <input type="text" id="rootOnlySubject" name="rootOnlySubject" v-model="formData.rootOnlySubject"
+               placeholder="Default: /C=CN/ST=Jiangsu/L=Wuxi/O=zzz/OU=zzz/CN=zzz Root CA"><br>
         <label for="rootOnlyValidityDays">Root CA Validity Days:</label>
-        <input type="number" id="rootOnlyValidityDays" name="rootOnlyValidityDays" v-model="formData.rootOnlyValidityDays" placeholder="Default: 73000"><br>
+        <input type="number" id="rootOnlyValidityDays" name="rootOnlyValidityDays"
+               v-model="formData.rootOnlyValidityDays" placeholder="Default: 73000"><br>
         <label for="rootOnlySerialNumber">Serial Number:</label>
-        <input type="number" id="rootOnlySerialNumber" name="rootOnlySerialNumber" v-model="formData.rootOnlySerialNumber" placeholder="Default: 1000"><br>
+        <input type="number" id="rootOnlySerialNumber" name="rootOnlySerialNumber"
+               v-model="formData.rootOnlySerialNumber" placeholder="Default: 1000"><br>
       </div>
 
       <input type="submit" value="Submit">

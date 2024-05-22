@@ -1,5 +1,8 @@
 # self-signed-certificate-front
-This frontend project provides a simple web interface for generating self-signed certificates using the Vite framework. By default, the root certificate is generated only once. It can be manually deleted through the web interface to regenerate it if needed.
+
+This frontend project provides a simple web interface for generating self-signed certificates using the Vite framework.
+By default, the root certificate is generated only once. It can be manually deleted through the web interface to
+regenerate it if needed.
 
 ### Usage
 

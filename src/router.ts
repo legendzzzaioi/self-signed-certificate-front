@@ -1,23 +1,23 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
     {
         path: '/',
         name: 'Index',
         component: () => import('./components/Index.vue'),
-        meta: { title: 'Index' },
+        meta: {title: 'Index'},
     },
     {
         path: '/files',
         name: 'Files',
         component: () => import('./components/Files.vue'),
-        meta: { title: 'Files' },
+        meta: {title: 'Files'},
     },
     {
         path: '/result',
         name: 'Result',
         component: () => import('./components/Result.vue'),
-        meta: { title: 'Result' },
+        meta: {title: 'Result'},
     },
 ];
 

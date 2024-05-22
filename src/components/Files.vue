@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, nextTick } from 'vue';
+import {ref, onMounted, nextTick} from 'vue';
 import ClipboardJS from 'clipboard';
 
 interface FileItem {
@@ -22,7 +22,7 @@ async function fetchFileList(): Promise<void> {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ type: 'cert' }),
+      body: JSON.stringify({type: 'cert'}),
     });
 
     if (response.ok) {
@@ -42,7 +42,7 @@ async function viewFile(name: string, action: 'view' | 'download'): Promise<void
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ type: 'cert', name, method: 'view' }),
+      body: JSON.stringify({type: 'cert', name, method: 'view'}),
     });
 
     if (response.ok) {
@@ -93,7 +93,7 @@ function resetCopyStatus(): void {
 }
 
 function downloadFileContent(fileName: string, content: string): void {
-  const blob = new Blob([content], { type: 'text/plain' });
+  const blob = new Blob([content], {type: 'text/plain'});
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
@@ -109,7 +109,7 @@ async function deleteFile(name: string): Promise<void> {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ type: 'cert', name, method: 'delete' }),
+      body: JSON.stringify({type: 'cert', name, method: 'delete'}),
     });
 
     if (response.ok) {
@@ -158,7 +158,7 @@ function updateCopyStatus(message: string): void {
         </div>
       </li>
       <button @click="toggleDateInfoVisibility" class="toggle-date-button">
-      {{ showDates ? 'Hide Dates' : 'Show Dates' }}
+        {{ showDates ? 'Hide Dates' : 'Show Dates' }}
       </button>
     </ul>
     <p v-else class="no-files">No files have been generated yet.</p>
@@ -268,8 +268,8 @@ button.delete-button {
   padding: 10px;
   white-space: pre-wrap;
   font-family: monospace;
-  max-height: 400px; 
-  overflow-y: auto; 
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .copy-container {
